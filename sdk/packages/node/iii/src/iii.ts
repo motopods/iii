@@ -1,5 +1,4 @@
 import { context, trace } from '@opentelemetry/api'
-import { createRequire } from 'node:module'
 import * as os from 'node:os'
 import { type Data, WebSocket } from 'ws'
 import { ChannelReader, ChannelWriter } from './channels'
@@ -60,8 +59,8 @@ import type {
 } from './types'
 import { isChannelRef } from './utils'
 
-const require = createRequire(import.meta.url)
-const { version: SDK_VERSION } = require('../package.json')
+declare const __SDK_VERSION__: string
+const SDK_VERSION = __SDK_VERSION__
 
 function getOsInfo(): string {
   return `${os.platform()} ${os.release()} (${os.arch()})`
